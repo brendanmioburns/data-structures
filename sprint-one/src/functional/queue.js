@@ -7,9 +7,14 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
+    var key = 0;
+    storage[key] = value;
+    key ++;
   };
 
   someInstance.dequeue = function() {
+    var key = 0;
+    
   };
 
   someInstance.size = function() {
