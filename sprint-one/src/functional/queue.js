@@ -2,36 +2,37 @@ var Queue = function() {
   var someInstance = {};
 
   // Use an object with numeric keys to store values
-  var storage = {};
+  someInstance.storage = {};
   //builder is linear
-  var builder = 0;
+  someInstance.builder = 0;
   //size can go up and down
-  var size = 0;
+  someInstance.count = 0;
   //indexOfLeavingValue is the index of the property that is next in line to be dequeued (pretends as though the last dequeue'd value was *actually* removed or popped)
-  var indexOfLeavingValue = 0;
+  someInstance.indexOfLeavingValue = 0;
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    storage[builder] = value;
-    size++;
-    builder++;
+    someInstance.storage[someInstance.builder] = value;
+    someInstance.count++;
+    someInstance.builder++;
   };
 
   someInstance.dequeue = function() {
     
-    var leavingValue = storage[indexOfLeavingValue];
-    indexOfLeavingValue++;
-    size--;
+    var leavingValue = someInstance.storage[someInstance.indexOfLeavingValue];
+
+    if (someInstance.count > 0) {
+      someInstance.count--;
+    }
+
+    someInstance.indexOfLeavingValue++;
+
 
     return leavingValue;  
   };
 
   someInstance.size = function() {
-    if (size > 0) {
-      return size;
-    } else {
-      return 0;
-    }
+    return someInstance.count;
   };
 
   return someInstance;
