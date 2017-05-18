@@ -7,8 +7,8 @@ var Queue = function() {
   var builder = 0;
   //size can go up and down
   var size = 0;
-  //nextQueue is the next index as if the last dequeue'd value was *actually* removed or popped
-  var nextQueue = 0;
+  //indexOfNextToLeave is the index of the property that is next in line to be dequeued (pretends as though the last dequeue'd value was *actually* removed or popped)
+  var indexOfNextToLeave = 0;
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
@@ -19,8 +19,8 @@ var Queue = function() {
 
   someInstance.dequeue = function() {
     
-    var currentValue = storage[nextQueue];
-    nextQueue++;
+    var currentValue = storage[indexOfNextToLeave];
+    indexOfNextToLeave++;
     size--;
 
     return currentValue;  
