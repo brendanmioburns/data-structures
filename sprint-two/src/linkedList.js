@@ -5,71 +5,45 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     var node = new Node(value);
+    var currentNode = this.head;
 
     if (this.head === null) {
 //first instantiation --- head and tail point to the same node the first time only.
       this.head = node;
-
-    } else if (JSON.stringify(this.head) === JSON.stringify(this.tail)) {
-      this.head.next = node;
-
     } else {
       
-  
-      while (this.head.next) {
-        this.head = this.head.next;
+      while (currentNode.next) {
+        currentNode = currentNode.next;
       }
-
-      this.head.next = node;
-
-      //this.addToTail(node);
-    // Any instantiation after the first time
-      // var current = this.tail;
-      // if (this.tail.next) {
-      //   this.tail = this.tail.next;
-      // }
-      
-      // this.tail.next = node;
+//second node only runs this line below
+      currentNode.next = node;
     }
-
     this.tail = node;
-    // this.tail.next = node;
   };
 
   list.removeHead = function() {
+    var removedValue = this.head.value;
     this.head = this.head.next;
+    return removedValue;
   };
 
   list.contains = function(target) {
     
-    if (this.value === target) {
-      return true;
+    var currentNode = this.head;
+
+    while (currentNode.next) {
+      if (currentNode.value === target) {
+        return true;
+      }
+      currentNode = currentNode.next; 
     }
 
-    if (this.value !== target) {
-      return this.contains(target);
-
+    if (currentNode.value === target) {
+      return true;
     } else {
       return false;
     }
-    // each(this.head, child => {
-    //   for (var key in child) {
-    //     if (child.value === target) {
-    //       return true;
-    //     }
-    //   }
-    // });
-
-    // for (var key in this.head) {
-    //   while (this.head.next) {
-
-    //     return true
-    //   }
-    //   return false
-    // }
-    // return this.hasOwnProperty(target);
   };
-
   return list;
 };
 

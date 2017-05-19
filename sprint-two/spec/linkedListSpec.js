@@ -26,19 +26,13 @@ describe('linkedList', function() {
   it('should remove the head from the list when removeHead is called', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
+    linkedList.addToTail(6);
     expect(linkedList.head.value).to.equal(4);
+    expect(linkedList.head.next.value).to.equal(5);
+    expect(linkedList.head.next.next.value).to.equal(6);
     linkedList.removeHead();
     expect(linkedList.head.value).to.equal(5);
-    // expect(linkedList.tail.value).to.equal(null);
-  });
-
-  it('X', function() {
-    linkedList.addToTail(4);
-    linkedList.addToTail(5);
-    //linkedList.addToTail(6);
-    expect(linkedList.head.next.value).to.equal(5);
-    //expect(linkedList.head.next.next.value).to.equal(6);
-    // expect(linkedList.tail.value).to.equal(null);
+    expect(linkedList.tail.next).to.equal(null);
   });
 
   it('should return the value of the former head when removeHead is called', function() {
