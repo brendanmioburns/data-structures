@@ -27,17 +27,14 @@ treeMethods.contains = function(target, root) {
   //loops through root's array of possible children
   for (var i = 0; i < selectedRootChildren.length; i++) {
     var child = selectedRootChildren[i];
-    //perform recursion on each child in array
-    if (this.contains(target, child)) {
+    //perform recursion on each child in array (selectedRoot can also be 'this')
+    if (selectedRoot.contains(target, child)) {
       return true;
     }
   }
   //iterated through all children arrays and could not find target
   return false;
 };
-
-
-
 /*
  * Complexity: What is the time complexity of the above functions?
  */
