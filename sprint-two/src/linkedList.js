@@ -27,23 +27,34 @@ var LinkedList = function() {
     return removedValue;
   };
 
-  list.contains = function(target) {
+  list.contains = function(target, nextNode) {
     
-    var currentNode = this.head;
+    var node = nextNode || this.head;
 
-    while (currentNode.next) {
-      if (currentNode.value === target) {
-        return true;
-      }
-      currentNode = currentNode.next; 
-    }
-
-    if (currentNode.value === target) {
+    if (node.value === target) {
       return true;
+    } else if (node.next !== null) {
+      return this.contains(target, node.next);
     } else {
       return false;
     }
   };
+//If nextNode is not provided as an extra parameter:
+  //   var currentNode = this.head;
+
+  //   while (currentNode.next) {
+  //     if (currentNode.value === target) {
+  //       return true;
+  //     }
+  //     currentNode = currentNode.next; 
+  //   }
+
+  //   if (currentNode.value === target) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // };
   return list;
 };
 
