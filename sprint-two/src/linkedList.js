@@ -4,21 +4,15 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
-    var node = new Node(value);
-    var currentNode = this.head;
+    var newTail = Node(value);
 
-    if (this.head === null) {
-//first instantiation --- head and tail point to the same node the first time only.
-      this.head = node;
-    } else {
-      
-      while (currentNode.next) {
-        currentNode = currentNode.next;
-      }
-//second node only runs this line below
-      currentNode.next = node;
+    if (!list.head) {
+      list.head = newTail;
     }
-    this.tail = node;
+    if (list.tail) {
+      list.tail.next = newTail;
+    }
+    list.tail = newTail;
   };
 
   list.removeHead = function() {
@@ -66,6 +60,8 @@ var Node = function(value) {
 
   return node;
 };
+
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
